@@ -3,14 +3,14 @@ import './css/style.css';
 import './App.css';
 import { Link } from 'react-router-dom';
 import mitralogo from './img/mitra-logo-02.png'; 
-
+import mitralogolight from './img/mitra-logo-05.png';
 
 export function Navbar() {
   return (
     <div className="bar">
       <div className="bar__content u-centered">
         <a href="index.html">
-          <img className="bar__logo" src={mitralogo} alt="logo image"/>
+          <img className="bar__logo" src={mitralogolight} alt="logo image"/>
         </a>
         <input type="checkbox" id="inpNavToggle" />
         <label className="bar__nav-toggle" htmlFor="inpNavToggle">

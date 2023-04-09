@@ -3,12 +3,14 @@ import './App.css';
 import LandingPage  from './LandingPage';
 import Signin from './Signin';
 import  React  from 'react';
+import Home from './Home';
 
 function App() {
   return (
       <div>
-        {/* < LandingPage /> */}
-        <Signin />
+        {/* < LandingPage />  */}
+        {/* <Signin /> */}
+        <Home />
       </div>
   );
 }
