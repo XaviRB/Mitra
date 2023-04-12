@@ -8,9 +8,9 @@ import Home from './Home';
 function App() {
   return (
       <div>
-        {/* < LandingPage />  */}
-        {/* <Signin /> */}
-        <Home />
+         {/* < LandingPage />    */}
+          {/* <Signin />   */}
+        <Home />  
       </div>
   );
 }

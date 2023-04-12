@@ -17,15 +17,6 @@ export function Navbar() {
           <i className="material-icons">menu</i>
         </label>
         <nav className="nav">
-          <a className="nav__link" href="index.html" id="n1">
-            Home
-          </a>
-          <a className="nav__link" href="login-page.html">
-            Login Page
-          </a>
-          <a className="nav__link" href="register.html">
-            Register
-          </a>
           <a className="nav__link" href="login-portal.html">
             Login Portal
           </a>
@@ -35,11 +26,8 @@ export function Navbar() {
           <a className="nav__link" href="#">
             Help
           </a>
-          <a className="btn-blue" href="">
-            Login
-          </a>
           <a className="btn-green" href="login-page.html">
-            Sign Up
+            Sign Out
           </a>
         </nav>
       </div>

@@ -111,7 +111,7 @@ h1, h2 {
     left: 0;
     width: 100%;
     height: var(--bar-height);
-    box-shadow: 0 0 1rem rgba(97, 97, 97, 0.1);
+    box-shadow: 0 0 1rem rgba(97, 97, 97, .5);
     /* border-bottom: .3px solid rgb(222, 222, 222); */
     /* border-bottom: 1px dotted rgb(200, 200, 200); */
     /* border-bottom: 1px dotted rgb(0, 0, 0); */
