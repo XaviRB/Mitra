@@ -1,8 +1,36 @@
 import  React  from 'react';
 import {LandingNavbar} from './Navbar';
 import {Footer} from './Footer'
+import { Link,useNavigate } from 'react-router-dom';
+import { signIn } from './Firebase.js';
+import { useState } from 'react';
+import Home from './Home'
 
 function Signin(){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+  
+  const handleSignIn = (event) => {
+    
+    event.preventDefault();
+    signIn(email, password)
+      .then((userCredential) => {
+        // Sign-in successful
+        const user = userCredential.user;
+        
+        // ...
+        navigate('/Home')
+      })
+      .catch((error) => {
+        // Sign-in failed
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+  };
     return(
     <>
         {/* ----------------SEO-Optimization---------------- */}
@@ -29,8 +57,6 @@ function Signin(){
         />
         {/* Bar */}
         <LandingNavbar/>
-        {/* Header Section */}
-        {/* Header Javascript */}
         {/* Login Section */}
         <section className="login">
             <div className="container">
@@ -40,60 +66,50 @@ function Signin(){
                     <span>Sign in</span> to your account now!
                 </h2>
                 <p>
-                    If you don't have an account you can <a href="#">register here!</a>
+                    If you don't have an account you can <Link to='/Register'>register here!</Link>
                 </p>
                 </div>
                 <div className="login-form">
-                <div>
-                    <form name="login" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" defaultValue="login" />
-                    <div className="login-item">
-                        <input
-                        type="email"
-                        name="Email Address"
-                        id="email"
-                        className="input"
-                        placeholder="Email Address"
-                        required=""
-                        />
+                    <div>
+                    {error && <div>{error}</div>}
+                <form onSubmit={handleSignIn}>
+                  <div className="login-item">
+                    <input
+                      type="email"
+                      name="Email Address"
+                      id="email"
+                      className="input"
+                      placeholder="Email Address"
+                      required=""
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
+                  </div>
+                  <div className="login-item">
+                    <input
+                      type="password"
+                      name="Password"
+                      id="password"
+                      className="input"
+                      placeholder="Password"
+                      required=""
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                    />
+                  </div>
+                  <div className="login-feature">
+                    <div className="login-link">
+                      <a href="#">Forgot Password</a>
                     </div>
-                    <div className="login-item">
-                        <input
-                        type="text"
-                        name="Password"
-                        id="password"
-                        className="input"
-                        placeholder="Password"
-                        required=""
-                        />
+                    <div className="login-submit">
+                      <input
+                        type="submit"
+                        defaultValue="Login"
+                        className="btn-submit"
+                      />
                     </div>
-                    <div className="login-feature">
-                        <div className="login-link">
-                        <a href="#">Forgot Password</a>
-                        </div>
-                        <div className="login-submit">
-                        <input
-                            type="submit"
-                            defaultValue="Login"
-                            className="btn-submit"
-                        />
-                        </div>
-                    </div>
-                    <div className="login-feature" id="login-feature">
-                        <div className="login-link">
-                        <a href="#">
-                            If you don't have an account, you can sign up now
-                        </a>
-                        </div>
-                        <div className="login-submit">
-                        <input
-                            type="submit"
-                            defaultValue="Sign Up"
-                            className="btn-submit2"
-                        />
-                        </div>
-                    </div>
-                    </form>
+                  </div>
+                </form>
                 </div>
                 </div>
             </div>

@@ -17,23 +17,36 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+const getFriendlyErrorMessage = (errorCode) => {
+  switch (errorCode) {
+    case 'auth/invalid-email':
+      return 'The email address is not valid.';
+    case 'auth/user-disabled':
+      return 'The user account has been disabled by an administrator.';
+    case 'auth/user-not-found':
+      return 'There is no user record corresponding to this email. Please check your email and try again.';
+    case 'auth/wrong-password':
+      return 'The password is invalid. Please check your password and try again.';
+    default:
+      return 'An error occurred. Please try again.';
+  }
+};
 //Creating user with email and password
 export const signUp = (email, password) => {
   const auth = getAuth();
   return createUserWithEmailAndPassword(auth, email, password);
 };
-
+//Sign in 
 export const signIn = (email, password) => {
   const auth = getAuth();
   return signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      console.log("true");  // Log "true" to the console if sign-in is successful
-      return true;  // Return true after successfully signing in
+    .then((userCredential) => {
+      console.log("Sign-in successful:", userCredential);
+      return userCredential;
     })
     .catch((error) => {
-      console.log(error);  // Log any errors that occur during sign-in
-      return false;  // Return false if sign-in fails
+      console.log("Sign-in error:", error);
+      throw error; // Throw the error so that it's caught in the Signin component
     });
-    
 };
   
