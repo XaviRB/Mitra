@@ -17,8 +17,8 @@ export function Navbar() {
           <i className="material-icons">menu</i>
         </label>
         <nav className="nav">
-          <Link to="/Signin" className="nav__link">
-            Login Portal
+          <Link to="/LandingPage" className="nav__link">
+            Landing Page
           </Link>
           <Link to="/profile" className="nav__link">
             Profile
@@ -60,7 +60,7 @@ export function LandingNavbar() {
             Sign Up
           </Link>
           
-          <Link to="/LandingPage" className="btn-blue">
+          <Link to="/Signin" className="btn-blue">
             Sign in
           </Link>
         </nav>
