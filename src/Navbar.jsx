@@ -1,34 +1,34 @@
 import React from 'react';
 import './css/style.css';
 import './App.css';
-import { Link } from 'react-router-dom';
 import mitralogo from './img/mitra-logo-02.png'; 
 import mitralogolight from './img/mitra-logo-05.png';
+import { Link } from 'react-router-dom';
 
 export function Navbar() {
   return (
     <div className="bar">
       <div className="bar__content u-centered">
-        <a href="index.html">
+        <Link to="/LandingPage">
           <img className="bar__logo" src={mitralogolight} alt="logo image"/>
-        </a>
+        </Link>
         <input type="checkbox" id="inpNavToggle" />
         <label className="bar__nav-toggle" htmlFor="inpNavToggle">
           <i className="material-icons">menu</i>
         </label>
         <nav className="nav">
-          <a className="nav__link" href="login-portal.html">
+          <Link to="/Signin" className="nav__link">
             Login Portal
-          </a>
-          <a className="nav__link" href="profile.html">
+          </Link>
+          <Link to="/profile" className="nav__link">
             Profile
-          </a>
-          <a className="nav__link" href="#">
+          </Link>
+          <Link className="nav__link" to='/'>
             Help
-          </a>
-          <a className="btn-green" href="login-page.html">
+          </Link>
+          <Link to="/LandingPage" className="btn-green">
             Sign Out
-          </a>
+          </Link>
         </nav>
       </div>
     </div>
@@ -39,38 +39,30 @@ export function LandingNavbar() {
   return (
     <div className="bar">
       <div className="bar__content u-centered">
-        <a href="index.html">
+        <Link to="/LandingPage">
           <img className="bar__logo" src={mitralogo} alt="logo image" />
-        </a>
+        </Link>
         <input type="checkbox" id="inpNavToggle" />
         <label className="bar__nav-toggle" htmlFor="inpNavToggle">
           <i className="material-icons">menu</i>
         </label>
         <nav className="nav">
-          <a className="nav__link" href="index.html" id="n1">
+          <Link to="/Home" className="nav__link">
             Home
-          </a>
-          <a className="nav__link" href="login-page.html">
-            Login Page
-          </a>
-          <a className="nav__link" href="register.html">
+          </Link>
+          <Link to="/Register" className="nav__link">
             Register
-          </a>
-          <a className="nav__link" href="login-portal.html">
+          </Link>
+          <Link to="/Signin" className="nav__link">
             Login Portal
-          </a>
-          <a className="nav__link" href="profile.html">
-            Profile
-          </a>
-          <a className="nav__link" href="#">
-            Help
-          </a>
-          <a className="btn-blue" href="./Signin.jsx" >
-            Log in 
-          </a>
-          <a className="btn-green" href="login-page.html">
+          </Link>
+          <Link to="/Register" className="btn-green">
             Sign Up
-          </a>
+          </Link>
+          
+          <Link to="/LandingPage" className="btn-blue">
+            Sign in
+          </Link>
         </nav>
       </div>
     </div>
