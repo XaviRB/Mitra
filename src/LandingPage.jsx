@@ -1,8 +1,8 @@
 import  React  from 'react';
-import {LandingNavbar} from './Navbar';
+import {LandingNavbar} from './components/Navbar';
 import { useState } from 'react';
 import classroom from "./img/pexels-max-fischer-5212345.jpg"
-import {Footer} from './Footer';
+import {Footer} from './components/Footer';
 
 
 function LandingPage(){

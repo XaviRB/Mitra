@@ -1,6 +1,6 @@
 import  React  from 'react';
-import {LandingNavbar} from './Navbar';
-import {Footer} from './Footer'
+import {Footer} from './components/Footer';
+import {LandingNavbar} from './components/Navbar';
 import { Link,useNavigate } from 'react-router-dom';
 import { signIn } from './Firebase.js';
 import { useState } from 'react';

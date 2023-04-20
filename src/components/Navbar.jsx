@@ -1,8 +1,8 @@
 import React from 'react';
-import './css/style.css';
-import './App.css';
-import mitralogo from './img/mitra-logo-02.png'; 
-import mitralogolight from './img/mitra-logo-05.png';
+import '../css/style.css';
+import '../App.css';
+import mitralogo from '../img/mitra-logo-02.png'; 
+import mitralogolight from '../img/mitra-logo-05.png';
 import { Link } from 'react-router-dom';
 
 export function Navbar() {
