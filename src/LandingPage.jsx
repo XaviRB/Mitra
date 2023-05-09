@@ -38,11 +38,15 @@ function LandingPage(){
         <div className="header-box">
             <div className="header-text">
             <h1>
-                Bringing <span>new</span> ways to student learning
+               <span>Welcome to Mitra! <br /></span>
+                {/* Space between welcome text and intro text. Two options*/}
+                {/*<br />*/}
+                Introducing <span>new</span> ways for neurodivergent individuals to establish <span>connections</span> and <span>self-advocate</span>
             </h1>
             <p>
                 Mitra is a mentorship network that offers advice, support,
                 development, and mentor/mentee opportunities for everyone.
+                Welcome to a space where you can connect, grow, and succeed on your own terms.
             </p>
             <div className="header-button">
                 <a href="#" className="btn-green">
@@ -62,11 +66,13 @@ function LandingPage(){
     <section className="portal">
         <div className="container">
         <h2>
-            Login to your <span>portal</span> now
+            Login or Sign-up using our <span>portal</span> now!
         </h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
-            est ad quos?
+            Seeking a mentor, looking to mentor others, or interested in both? Mitra is here to help.
+            <br />
+            Mitra offers mentorship opportunities to help individuals establish meaningful connections and self-advocate in support of their personal and professional goals. 
+            Login or sign-up now to explore your options. 
         </p>
         <div className="portal-box">
             <div className="portal-card">
@@ -77,7 +83,7 @@ function LandingPage(){
             </div>
             <div className="portal-text">
                 <h3>
-                Login for <span>student</span> here
+                Login for <span>mentors</span> here
                 </h3>
             </div>
             <div className="portal-button-box">
@@ -96,7 +102,7 @@ function LandingPage(){
             </div>
             <div className="portal-text">
                 <h3>
-                Login for <span>mentors</span> here
+                Login for <span>mentees</span> here
                 </h3>
             </div>
             <div className="portal-button-box">
@@ -115,7 +121,7 @@ function LandingPage(){
             </div>
             <div className="portal-text">
                 <h3>
-                Become a <span>member</span> here
+                Sign-up as <span>either or both</span> here
                 </h3>
             </div>
             <div className="portal-button-box">
@@ -135,27 +141,25 @@ function LandingPage(){
         <div className="about-box">
             <div className="about-text">
             <h2>
-                Build student experiences through <span>strength-based</span>{" "}
-                trainings
+                Create and establish strong <span>connections</span> and <span>self-advocate</span> in support of your personal and professional goals
             </h2>
             <p>
-                Maxime, labore rem deleniti sequi adipisci dignissimos dolore
-                laboriosam, quod totam esse voluptatem commodi quas. Quisquam et
-                magni, veniam fugit dolor sed rem esse excepturi? At numquam
-                corrupti praesentium beatae ea blanditiis!
+                The developers and researchers of Mitra, believe that everyone has unique strengths and talents that can be harnessed to achieve success. 
+                That's why Mitra offer a range of mentorship opportunities to help 
+                both mentors and mentees develop their strengths and thrive to accomplish their personal and professional goals.
             </p>
             <div className="about-details-box">
                 <div className="about-detail">
                 <span className="material-symbols-outlined">check_circle</span>
-                <h4>Detail</h4>
+                <h4>Create new meaningful connections!</h4>
                 </div>
                 <div className="about-detail">
                 <span className="material-symbols-outlined">check_circle</span>
-                <h4>Detail</h4>
+                <h4>Self-advocate!</h4>
                 </div>
                 <div className="about-detail">
                 <span className="material-symbols-outlined">check_circle</span>
-                <h4>Detail</h4>
+                <h4>Improve and succeed in personal and professional goals!</h4>
                 </div>
             </div>
             <div className="about-button">
@@ -178,8 +182,9 @@ function LandingPage(){
             <span />
         </h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
-            est ad quos?
+            At Mitra, we provide a platform for neurodivergent individuals to connect with mentors and peers, and to self-advocate for their personal and professional goals. 
+            Our mentorship opportunities include one-on-one mentor/mentee relationships, group mentoring, and more. 
+            With Mitra, individuals can gain the skills, knowledge, and connections they need to thrive and succeed in their chosen goals.
         </p>
         <div className="features-box">
             <div className="features-card">
@@ -189,8 +194,8 @@ function LandingPage(){
                 </div>
             </div>
             <div className="features-text">
-                <h3>Create Mentor Relationships</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h3>Create mentor-mentee relationships</h3>
+                <p> </p>
             </div>
             </div>
             <div className="features-card">
@@ -202,8 +207,8 @@ function LandingPage(){
                 </div>
             </div>
             <div className="features-text">
-                <h3>Positive Learning Environment</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h3>Be part of a positive supportive community</h3>
+                <p> </p>
             </div>
             </div>
             <div className="features-card">
@@ -213,8 +218,8 @@ function LandingPage(){
                 </div>
             </div>
             <div className="features-text">
-                <h3>Feature #3</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h3>Empowering support for all types of development</h3>
+                <p> </p>
             </div>
             </div>
             <div className="features-card">
@@ -224,8 +229,8 @@ function LandingPage(){
                 </div>
             </div>
             <div className="features-text">
-                <h3>24/7 Advice &amp; Support</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h3>Mentor and mentee matching based on shared interests and goals</h3>
+                <p> </p>
             </div>
             </div>
         </div>
@@ -237,7 +242,7 @@ function LandingPage(){
         <div className="banner-box">
             <div className="banner-text">
             <h2>
-                Learn how <span>Mitra</span> <br /> can help your education
+                Learn how <span>Mitra</span> <br /> can help and support you!
             </h2>
             <div className="banner-form">
                 <form name="banner" method="POST" data-netlify="true">
