@@ -50,18 +50,11 @@ export function LandingNavbar() {
           <Link to="/Home" className="nav__link">
             Home
           </Link>
-          <Link to="/Register" className="nav__link">
+          <Link to="/Registration" className="btn-green"> 
             Register
           </Link>
-          <Link to="/Signin" className="nav__link">
-            Login Portal
-          </Link>
-          <Link to="/Register" className="btn-green">
-            Sign Up
-          </Link>
-          
           <Link to="/Signin" className="btn-blue">
-            Sign in
+            Login Portal
           </Link>
         </nav>
       </div>

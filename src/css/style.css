@@ -1558,6 +1558,146 @@ h1, h2 {
 
 }
 
+/* Registration Section */
+/* Registration Section */
+.registration {
+    padding: 5rem 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .registration-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 3rem 1rem;
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registration-text {
+    flex-basis: 100%;
+  }
+  
+  .registration-text h2 {
+    font-size: 4.5rem;
+    font-weight: 400;
+    color: var(--color-blue);
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  
+  .registration-text p {
+    font-size: 1.7em;
+    font-weight: 400;
+    color: var(--color-medium-grey);
+    line-height: 2;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .registration-text a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-green);
+    line-height: 2;
+    text-decoration: none;
+    transition: .3s ease all;
+  }
+  
+  .registration-text a:hover {
+    color: var(--color-blue);
+  }
+  
+  .registration-text h2 span {
+    color: var(--color-green);
+  }
+  
+  .registration-form {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .registration-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .registration-item {
+    margin-bottom: 2rem ;
+  }
+  
+  .registration-item input {
+    width: 100% ;
+    height: 2.5rem ;
+    border-radius: 4px ;
+    background: #ecf0f1 ;
+    border: 1px solid var(--color-light-grey) ;
+    padding: 1rem ;
+    font-family: inherit ;
+    color: var(--color-medium-grey);
+    font-size: 1.4rem ;
+    font-weight: 400 ;
+  }
+  
+  .registration-item .placeholder {
+    color: var(--color-light-purple);
+    font-size: 1rem;
+    letter-spacing: .5px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .registration-feature {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .registration-submit button{
+    margin-top: 2rem;
+    background: var(--color-green) !important;
+    color: var(--color-white) !important;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--color-green);
+    border-radius: 4px;
+    transition: .3s all;
+    cursor: pointer;
+  }
+  
+  .registration-submit:hover{
+    background: var(--color-blue);
+    color: var(--color-white);
+  }
+/* Progressbar */
+  .progress-bar-container {
+    width: 97%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 8em  0em 0em 2em;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.5s ease;
+  }
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
