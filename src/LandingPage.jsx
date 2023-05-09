@@ -3,6 +3,10 @@ import {LandingNavbar} from './components/Navbar';
 import { useState } from 'react';
 import classroom from "./img/pexels-max-fischer-5212345.jpg"
 import {Footer} from './components/Footer';
+import community from "./img/comunity_blue.jpg"
+import guy from "./img/Guy_working.jpg"
+import lady from "./img/Lady_waving.jpg"
+import computer from "./img/computer.jpg"
 
 
 function LandingPage(){
@@ -47,7 +51,7 @@ function LandingPage(){
             </div>
             </div>
             <div className="header-image">
-            <img src={classroom} alt="" />
+            <img src={computer} alt="" />
             </div>
         </div>
         </div>
@@ -161,7 +165,7 @@ function LandingPage(){
             </div>
             </div>
             <div className="about-image">
-            <img src={classroom} alt="" />
+            <img src={community} alt="" />
             </div>
         </div>
         </div>
@@ -259,7 +263,7 @@ function LandingPage(){
             </div>
             </div>
             <div className="banner-image">
-            <img src={classroom} alt="" />
+            <img src={lady} alt="" />
             </div>
         </div>
         </div>
