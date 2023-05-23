@@ -12,6 +12,7 @@ export function Footer(){
             <div className="footer-box-company">
             <h3>Inquiries</h3>
             <div className="contact-form">
+                {/* Look at improving accessibility by adding labels to the footer. */}
                 <form name="contact" method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" defaultValue="contact" />
                 <div className="contact-item">

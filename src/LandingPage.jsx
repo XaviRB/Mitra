@@ -48,11 +48,11 @@ function LandingPage(){
                 development, and mentor/mentee opportunities for everyone.
                 Welcome to a space where you can connect, grow, and succeed on your own terms.
             </p>
-            <div className="header-button">
+            {/* <div className="header-button">
                 <a href="#" className="btn-green">
                 About Mitra
                 </a>
-            </div>
+            </div> */}
             </div>
             <div className="header-image">
             <img src={computer} alt="" />
@@ -66,7 +66,7 @@ function LandingPage(){
     <section className="portal">
         <div className="container">
         <h2>
-            Login or Sign-up using our <span>portal</span> now!
+            Login or sign up using our <span>portal</span> now!
         </h2>
         <p>
             Seeking a mentor, looking to mentor others, or interested in both? Mitra is here to help.
@@ -88,7 +88,7 @@ function LandingPage(){
             </div>
             <div className="portal-button-box">
                 <div className="portal-button">
-                <a href="#" className="btn-green" id="yellow-transparent">
+                <a href="/Signin" className="btn-green" id="yellow-transparent">
                     <span>→</span>
                 </a>
                 </div>
@@ -102,12 +102,12 @@ function LandingPage(){
             </div>
             <div className="portal-text">
                 <h3>
-                Sign-up and create an <span>account</span> here
+                Sign up and create an <span>account</span> here
                 </h3>
             </div>
             <div className="portal-button-box">
                 <div className="portal-button">
-                <a href="#" className="btn-green" id="sky-blue-transparent">
+                <a href="/Registration" className="btn-green" id="sky-blue-transparent">
                     <span>→</span>
                 </a>
                 </div>
