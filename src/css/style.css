@@ -1109,6 +1109,7 @@ h1, h2 {
     border-radius: 4px;
     transition: .3s all;
     cursor: pointer;
+    margin-bottom: 15px;
 }
 
 .login-submit .btn-submit:hover {
@@ -1631,7 +1632,52 @@ h1, h2 {
   }
   
   .registration-item {
-    margin-bottom: 2rem ;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .interest-checkboxes {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hobby-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
+  }
+  
+  .hobby-checkbox input {
+    margin-right: 0.5rem;
+    transform: translateY(12px);
+  }
+  
+  .hobby-checkbox label {
+    order: -1;
+    margin-left: 0.5rem;
+    white-space: nowrap; /* Prevent line breaks within labels */
+    display: inline-block;
+    width: calc(100% - 34rem); /* Adjust the width as needed */
+    line-height: 2;
+    transform: translateY(6.5px);    
+  }
+  
+  
+  .registration-item-role-selection {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    gap: 17.5rem;
+  }
+  
+  .registration-item-role-selection select {
+    font-size: 1.6rem;
+    padding: 1px;
+    width: 200px;
   }
   
   .registration-item input {
@@ -1643,7 +1689,7 @@ h1, h2 {
     padding: 1rem ;
     font-family: inherit ;
     color: var(--color-medium-grey);
-    font-size: 1.4rem ;
+    font-size: 1.7rem ;
     font-weight: 400 ;
   }
   
@@ -1660,6 +1706,13 @@ h1, h2 {
     justify-content: space-between;
     align-items: center;
   }
+
+  .registration-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
   
   .registration-submit button{
     margin-top: 2rem;
