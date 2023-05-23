@@ -68,26 +68,23 @@ export function Footer(){
             <div className="footer-box-links">
             <h3>Site Map</h3>
             <ul>
-                <a href="index.html">
-                <li>Home</li>
-                </a>
+                <Link to ="/LandingPage">
+                <li>Landing Page</li>
+                </Link>
                 <a href="design.html">
                 <li>Help</li>
                 </a>
             </ul>
             </div>
             <div className="footer-box-links">
-            <h3>Login Portals</h3>
+            <h3>Account Portals</h3>
             <ul>
-                <a href="index.html">
-                <li>Mentor Portal</li>
-                </a>
-                <a href="design.html">
-                <li>Student Portal</li>
-                </a>
-                <a href="photography.html">
-                <li>Become A Member</li>
-                </a>
+                <Link to ='/Signin'>
+                <li>Sign-in Portal</li>
+                </Link>
+                <Link to ="/Registration">
+                <li>Register Portal</li>
+                </Link>
             </ul>
             </div>
             <div className="footer-box-links">
