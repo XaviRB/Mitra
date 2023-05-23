@@ -180,7 +180,7 @@ function Registration() {
             <>
               {/* Birth Year, Things I Like, Role */}
               <div className="registration-item">
-                <label htmlFor="birthYear">Birth Year </label>
+                <label htmlFor="birthYear">Birth Year:</label>
                 <input
                   type="number"
                   name="birthYear"
@@ -194,31 +194,33 @@ function Registration() {
                 />
               </div>
               <div className="registration-item">
-                <label>Things I like</label>
-                <div>
+                <label>Things I like:</label>
+                <div className="interest-checkboxes">
                   {[
-                    "sports",
-                    "books",
-                    "movies",
-                    "video games",
-                    "exercise",
-                    "programming",
-                    "others",
+                     { name: "sports", label: "Sports" },
+                     { name: "books", label: "Books" },
+                     { name: "movies", label: "Movies" },
+                     { name: "video games", label: "Video Games" },
+                     { name: "exercise", label: "Exercise" },
+                     { name: "programming", label: "Programming" },
+                     { name: "others", label: "Others" },
                   ].map((interest) => (
-                    <label key={interest}>
+                    <label key={interest.name} className="hobby-checkbox">
                       <input
                         type="checkbox"
-                        value={interest}
-                        checked={interests.includes(interest)}
-                        onChange={() => toggleInterest(interest)}
+                        name={interest.name}
+                        value={interest.name}
+                        checked={interests.includes(interest.name)}
+                        onChange={() => toggleInterest(interest.name)}
                       />
-                      {interest}
+                      <label>{interest.label}</label>
                     </label>
                   ))}
                 </div>
               </div>
               <div className="registration-item">
-                <label htmlFor="role">I want to be </label>
+                <div className="registration-item-role-selection">
+                <label htmlFor="role">I want to be a: </label>
                 <select
                   name="role"
                   id="role"
@@ -230,6 +232,7 @@ function Registration() {
                   <option value="mentor">Mentor</option>
                   <option value="mentee">Mentee</option>
                 </select>
+              </div>
               </div>
               <button type="button" onClick={handleNext}>
                 Next

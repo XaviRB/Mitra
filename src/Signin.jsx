@@ -66,7 +66,7 @@ function Signin(){
                     <span>Sign in</span> to your account now!
                 </h2>
                 <p>
-                    If you don't have an account you can <Link to='/Register'>register here!</Link>
+                    If you don't have an account you can <Link to='/Registration'>register here!</Link>
                 </p>
                 </div>
                 <div className="login-form">

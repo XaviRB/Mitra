@@ -72,7 +72,7 @@ function LandingPage(){
             Seeking a mentor, looking to mentor others, or interested in both? Mitra is here to help.
             <br />
             Mitra offers mentorship opportunities to help individuals establish meaningful connections and self-advocate in support of their personal and professional goals. 
-            Login or sign-up now to explore your options. 
+            Login or sign-up now to explore more options. 
         </p>
         <div className="portal-box">
             <div className="portal-card">
@@ -83,31 +83,12 @@ function LandingPage(){
             </div>
             <div className="portal-text">
                 <h3>
-                Login for <span>mentors</span> here
+                Login to your <span>portal</span> here
                 </h3>
             </div>
             <div className="portal-button-box">
                 <div className="portal-button">
                 <a href="#" className="btn-green" id="yellow-transparent">
-                    <span>→</span>
-                </a>
-                </div>
-            </div>
-            </div>
-            <div className="portal-card">
-            <div className="portal-icon-box">
-                <div className="portal-icon" id="bg-green">
-                <span className="material-symbols-outlined">group</span>
-                </div>
-            </div>
-            <div className="portal-text">
-                <h3>
-                Login for <span>mentees</span> here
-                </h3>
-            </div>
-            <div className="portal-button-box">
-                <div className="portal-button">
-                <a href="#" className="btn-green" id="green-transparent">
                     <span>→</span>
                 </a>
                 </div>
@@ -121,7 +102,7 @@ function LandingPage(){
             </div>
             <div className="portal-text">
                 <h3>
-                Sign-up as <span>either or both</span> here
+                Sign-up and create an <span>account</span> here
                 </h3>
             </div>
             <div className="portal-button-box">
