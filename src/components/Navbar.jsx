@@ -1,16 +1,18 @@
 import React from 'react';
 import '../css/style.css';
 import '../App.css';
-import mitralogo from '../img/mitra-logo-02.png'; 
+import mitralogo from '../img/mitra-logo-02.png';
 import mitralogolight from '../img/mitra-logo-05.png';
 import { Link } from 'react-router-dom';
 
+/* REMINDER: Delete Home Link for the LandingPage (Its probably blended in with the white navbar) */
+
 export function Navbar() {
   return (
-    <div className="bar">
+    <div className="bar bar--solid">
       <div className="bar__content u-centered">
         <Link to="/LandingPage">
-          <img className="bar__logo" src={mitralogolight} alt="logo image"/>
+          <img className="bar__logo" src={mitralogolight} alt="logo image" />
         </Link>
         <input type="checkbox" id="inpNavToggle" />
         <label className="bar__nav-toggle" htmlFor="inpNavToggle">
@@ -23,7 +25,7 @@ export function Navbar() {
           <Link to="/profile" className="nav__link">
             Profile
           </Link>
-          <Link className="nav__link" to='/'>
+          <Link className="nav__link" to="/">
             Help
           </Link>
           <Link to="/LandingPage" className="btn-green">
@@ -37,7 +39,7 @@ export function Navbar() {
 
 export function LandingNavbar() {
   return (
-    <div className="bar">
+    <div className="bar bar--landing">
       <div className="bar__content u-centered">
         <Link to="/LandingPage">
           <img className="bar__logo" src={mitralogo} alt="logo image" />
@@ -50,7 +52,7 @@ export function LandingNavbar() {
           <Link to="/Home" className="nav__link">
             Home
           </Link>
-          <Link to="/Registration" className="btn-green"> 
+          <Link to="/Registration" className="btn-green">
             Register
           </Link>
           <Link to="/Signin" className="btn-blue">

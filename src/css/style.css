@@ -130,13 +130,29 @@ h1, h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.bar__logo {
-    height: 3.5rem;
-    width: auto;
-    /* height: 100%; */
-}
+  }
+  
+  .bar {
+    background-color: #fff; /* Default background color for the navbar */
+  }
+  
+  .bar--solid {
+    background-color: var(--color-blue); /* Blue solid color for the navbar in the Home page*/
+  }
+  
+  .bar--landing {
+    background-color: #ffffff; /* White navbar color for the landing page */
+  }
+  
+  .bar__logo {
+    height: 32px; /* Adjust the height as needed */
+  }
+  
+  /* Used to make the logo on the landing page navbar be either all black or all white */
+  .bar--solid .bar__logo {
+    /* filter: brightness(100); /* Adjust the brightness as needed */
+  }
+  
 
 .bar__nav-toggle {
     cursor: pointer;
@@ -174,7 +190,7 @@ h1, h2 {
 }
 
 .nav__link {
-    color: var(--color-blue);
+    color: var(--color-white);
     font-size: 1.4rem;
     font-weight: 400;
     line-height: 1.6;
@@ -537,6 +553,7 @@ h1, h2 {
     transition: .3s ease-in-out all;
     /* box-shadow: 0 10px 15px rgba(119, 119, 119, 0.1); */
     border-radius: 8px;
+    
 }
 
 .portal-card:hover {
