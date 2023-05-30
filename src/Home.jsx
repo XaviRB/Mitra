@@ -1,8 +1,11 @@
 import  React  from 'react';
 import {Navbar} from './components/Navbar';
 import {Footer} from './components/Footer';
+import Sidebar from './components/Sidebar'
+
 
 function Home(){
+  
     return(
         <>
         {/* Google Site Verification */}
@@ -43,47 +46,12 @@ function Home(){
         <link rel="manifest" href="/site.webmanifest" />
         {/* Bar */}
         <Navbar/>
+        <div>
         {/* Header Section */}
         {/* Header Javascript */}
         {/* Main Section */}
         <section className="main">
-            <div className="main-container">
-            <div className="main-mentors">
-                <div className="mentor-header">
-                <h4>Your Mentors</h4>
-                </div>
-                <div className="mentor-list">
-                <div className="mentor-name">
-                    <h5>First Last</h5>
-                    <div className="mentor-button">
-                    <a href="#" className="btn-green">
-                        Unmatch
-                    </a>
-                    </div>
-                </div>
-                <div className="mentor-name">
-                    <h5>First Last</h5>
-                    <div className="mentor-button">
-                    <a href="#" className="btn-green">
-                        Unmatch
-                    </a>
-                    </div>
-                </div>
-                <div className="mentor-name">
-                    <h5>First Last</h5>
-                    <div className="mentor-button">
-                    <a href="#" className="btn-green">
-                        Unmatch
-                    </a>
-                    </div>
-                </div>
-                </div>
-                <div className="mentor-tab">
-                <a href="#" className="btn-green">
-                    View New Matches
-                </a>
-                </div>
-            </div>
+            <Sidebar/>
             <div className="main-content">
                 <h2>Welcome to Mitra - Advice, Support, Development Website</h2>
                 <h4>Created by a research team at Western Washington University</h4>
@@ -125,8 +93,8 @@ function Home(){
                 </div>
                 </div>
             </div>
-            </div>
         </section>
+        </div>
         {/* Footer Section */}
         <Footer />
     </>

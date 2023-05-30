@@ -4,10 +4,26 @@ import '../App.css';
 import mitralogo from '../img/mitra-logo-02.png';
 import mitralogolight from '../img/mitra-logo-05.png';
 import { Link } from 'react-router-dom';
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 /* REMINDER: Delete Home Link for the LandingPage (Its probably blended in with the white navbar) */
 
 export function Navbar() {
+  
+  const navigate = useNavigate();
+
+  const signOutUser = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully");
+      navigate("/LandingPage"); // Redirect to the landing page after sign out
+    } catch (error) {
+      console.log("Sign out error:", error);
+    }
+  };
+
   return (
     <div className="bar bar--solid">
       <div className="bar__content u-centered">
@@ -28,7 +44,7 @@ export function Navbar() {
           <Link className="nav__link" to="/">
             Help
           </Link>
-          <Link to="/LandingPage" className="btn-green">
+          <Link onClick={signOutUser} className="btn-green">
             Sign Out
           </Link>
         </nav>

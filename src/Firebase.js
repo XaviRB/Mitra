@@ -3,6 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendEmailVerification
 } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
@@ -16,7 +17,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
 
 export const signUp = (email, password) => {
   const auth = getAuth();
@@ -39,4 +41,14 @@ export const signIn = (email, password) => {
 export const createUserProfile = async (userId, profile) => {
   const userRef = doc(db, "users", userId);
   await setDoc(userRef, profile);
+};
+
+export const sendVerificationEmail = async (user) => {
+  await sendEmailVerification(user)
+    .then(() => {
+      console.log("Verification email sent.");
+    })
+    .catch((error) => {
+      console.log("Error sending verification email: ", error);
+    });
 };
