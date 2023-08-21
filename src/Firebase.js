@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification
 } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, set } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCqOG0bqh7jB04h-wc_Xp538LvIDisy99I",
@@ -20,14 +20,11 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
-export const signUp = (email, password) => {
-  const auth = getAuth();
-  return createUserWithEmailAndPassword(auth, email, password);
-};
+export const signUp = (email, password) =>
+  createUserWithEmailAndPassword(auth, email, password);
 
-export const signIn = (email, password) => {
-  const auth = getAuth();
-  return signInWithEmailAndPassword(auth, email, password)
+export const signIn = (email, password) =>
+  signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       console.log("Sign-in successful:", userCredential);
       return userCredential;
@@ -36,11 +33,18 @@ export const signIn = (email, password) => {
       console.log("Sign-in error:", error);
       throw error;
     });
+
+export const getUsers = async () => {
+  const snapshot = await getDocs(collection(db, "users"));
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
 };
 
 export const createUserProfile = async (userId, profile) => {
   const userRef = doc(db, "users", userId);
-  await setDoc(userRef, profile);
+  await updateDoc(userRef, profile);
 };
 
 export const sendVerificationEmail = async (user) => {

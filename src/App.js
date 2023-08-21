@@ -5,6 +5,7 @@ import Signin from "./Signin";
 import Home from "./Home";
 import Chat from "./Chat";
 import Registration from "./registration/Registration";
+import Profile from "./Profile";
 import { AuthProvider } from "./components/Auth";
 
 // Create separate components for each route that needs the AuthProvider context
@@ -25,13 +26,13 @@ function ChatRoute() {
 }
 
 // Assuming you have a Profile component
-// function ProfileRoute() {
-//   return (
-//     <AuthProvider>
-//       <Profile />
-//     </AuthProvider>
-//   );
-// }
+function ProfileRoute() {
+   return (
+     <AuthProvider>
+       <Profile />
+    </AuthProvider>
+   );
+ }
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
         <Route path="/Registration" element={<Registration />} />
         <Route path="/Home" element={<HomeRoute />} />
         <Route path="/Chat" element={<ChatRoute />} />
-        {/* <Route path="/Profile" element={<ProfileRoute />} /> */}
+        <Route path="/Profile" element={<ProfileRoute />} /> 
       </Routes>
     </BrowserRouter>
   );
