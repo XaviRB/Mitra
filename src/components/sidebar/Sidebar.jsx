@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { doc, updateDoc, arrayRemove, getDoc, arrayUnion, getDocs, query, collection } from 'firebase/firestore';
-import { setDoc } from 'firebase/firestore'; // Add this import separately
+import { setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { db, getUsers } from '../../Firebase'; // Adjust the path based on your project structure
+import { db, getUsers } from '../../Firebase';
 import SidebarItem from './SidebarItems';
 
 function Sidebar() {
@@ -11,6 +11,7 @@ function Sidebar() {
   const [showPotentialMatches, setShowPotentialMatches] = useState(false);
   const [potentialMatches, setPotentialMatches] = useState([]);
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // New state variable for modal visibility
 
   useEffect(() => {
     fetchContacts();
@@ -19,7 +20,7 @@ function Sidebar() {
   const fetchContacts = async () => {
     const authUser = getAuth().currentUser;
     if (authUser) {
-      const authUserId = authUser.uid; // Get the authenticated user's ID
+      const authUserId = authUser.uid;
       const authUserDocRef = doc(db, 'users', authUserId);
       const authUserDoc = await getDoc(authUserDocRef);
 
@@ -27,24 +28,19 @@ function Sidebar() {
         const contactIds = authUserDoc.data().contacts;
         const contactDocs = await Promise.all(contactIds.map(id => getDoc(doc(db, 'users', id))));
         setContacts(contactDocs.map(doc => ({ id: doc.id, ...doc.data() })));
+        console.log("Set contacts:", contacts);
       }
     }
   }
 
   const fetchPotentialMatches = async () => {
-    const authUser = getAuth().currentUser;
-    if (authUser) {
-      const authUserId = authUser.uid;
-      const authUserDocRef = doc(db, 'users', authUserId);
-      const authUserDoc = await getDoc(authUserDocRef);
-  
-      if (authUserDoc.exists()) {
-        const contactIds = authUserDoc.data().contacts;
-        const users = await getUsers();
-        const potentialMatches = users.filter(user => user.id !== authUserId && !contactIds.includes(user.id));
-  
-        setPotentialMatches(potentialMatches);
-      }
+    try {
+      console.log("Fetching potential matches...");
+      const users = await getUsers();
+      console.log("Fetched all users:", users);
+      setPotentialMatches(users);
+    } catch (error) {
+      console.error("Error fetching potential matches:", error);
     }
   };
 
@@ -68,29 +64,36 @@ function Sidebar() {
   }
 
   const addUser = async (userId) => {
-    const authUser = getAuth().currentUser;
-    if (authUser) {
-      const authUserId = authUser.uid;
-      const authUserDocRef = doc(db, 'users', authUserId);
-      const otherUserDocRef = doc(db, 'users', userId);
-  
-      await updateDoc(authUserDocRef, {
-        contacts: arrayUnion(userId)
-      });
-  
-      await updateDoc(otherUserDocRef, {
-        contacts: arrayUnion(authUserId)
-      });
-  
-      fetchContacts();
-  
-      setShowPotentialMatches(false);
+    try{
+      
+      const authUser = getAuth().currentUser;
+      if (authUser) {
+        const authUserId = authUser.uid;
+        const authUserDocRef = doc(db, 'users', authUserId);
+        const otherUserDocRef = doc(db, 'users', userId);
+    
+        await updateDoc(authUserDocRef, {
+          contacts: arrayUnion(userId)
+        });
+    
+        await updateDoc(otherUserDocRef, {
+          contacts: arrayUnion(authUserId)
+        });
+    
+        fetchContacts();
+    
+        setShowPotentialMatches(false);
+      }
+      console.log("User added:", userId);
+    } catch (error) {
+      console.error("Error adding user:", error);
     }
   };
 
   const toggleShowPotentialMatches = () => {
+    console.log("Toggling potential matches...");
     setShowPotentialMatches(!showPotentialMatches);
-  
+
     if (!showPotentialMatches) {
       fetchPotentialMatches();
     }
@@ -116,6 +119,20 @@ function Sidebar() {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+    fetchPotentialMatches(); // Fetch potential matches when opening the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const selectUserAndCreateChat = (userId) => {
+    createChatRoom(userId); // Existing function to create a chat room
+    closeModal();
+  };
+
   return (
     <div className="main-mentors">
       <div className="mentor-header">
@@ -131,16 +148,22 @@ function Sidebar() {
           />
         ))}
       </div>
-      <button onClick={toggleShowPotentialMatches}>
-        {showPotentialMatches ? 'Close' : 'Add User'}
+      <button onClick={openModal}>
+        Add User
       </button>
-      {showPotentialMatches && (
-        <div className="dropdown-menu">
-          {potentialMatches.map(user => (
-            <div key={user.id} onClick={() => addUser(user.id)}>
-              {user.name}
-            </div>
-          ))}
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <button onClick={closeModal}>Close</button>
+            <ul>
+              {potentialMatches.map(user => (
+                <li key={user.id} onClick={() => selectUserAndCreateChat(user.id)}>
+                  {user.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SidebarItem = ({ name, removeMatch }) => {
-    return (
+const SidebarItem = ({ contact, removeMatch, createChatRoom }) => {
+  return (
+    <div onClick={() => createChatRoom(contact.id)}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div
           style={{
@@ -10,26 +11,21 @@ const SidebarItem = ({ name, removeMatch }) => {
             marginBottom: "auto",
           }}
         >
-          <Link
-            to={
-              (window.location.href.indexOf("messages") > -1
-                ? "../messages?name="
-                : "./messages?name=") + name + "&id=" + name.contactUserId
-            }
-          >
-            {name}
+          <Link to={`/chat/${contact.id}`}>
+            {contact.name}
           </Link>
         </div>
         <button
           style={{ fontSize: "10px", margin: "10px" }}
           onClick={() => {
-            removeMatch(name.contactUserId);
+            removeMatch(contact.contactUserId);  // Changed from name.contactUserId to contact.contactUserId
           }}
         >
           Unmatch
         </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
 export default SidebarItem;

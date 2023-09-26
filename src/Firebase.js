@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification
 } from "firebase/auth";
-import { getFirestore, doc, set } from "firebase/firestore";
+import { getFirestore, doc, set, getDocs, collection, updateDoc } from "firebase/firestore";  // Added getDocs and collection
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCqOG0bqh7jB04h-wc_Xp538LvIDisy99I",
@@ -34,13 +35,20 @@ export const signIn = (email, password) =>
       throw error;
     });
 
-export const getUsers = async () => {
-  const snapshot = await getDocs(collection(db, "users"));
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
-};
+    export const getUsers = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "users"));
+        const users = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log("Fetched users:", users);  // Debugging line
+        return users;
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        return [];
+      }
+    };
 
 export const createUserProfile = async (userId, profile) => {
   const userRef = doc(db, "users", userId);
