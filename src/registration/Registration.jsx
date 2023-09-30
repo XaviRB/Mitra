@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { LandingNavbar } from "../components/Navbar";
 import { signUp, createUserProfile, sendVerificationEmail } from "../Firebase.js";
+
 import "../css/style.css";
 
 // Create a new context for registration

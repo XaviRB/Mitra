@@ -18,18 +18,27 @@ function Sidebar() {
   }, []);
 
   const fetchContacts = async () => {
-    const authUser = getAuth().currentUser;
-    if (authUser) {
-      const authUserId = authUser.uid;
-      const authUserDocRef = doc(db, 'users', authUserId);
-      const authUserDoc = await getDoc(authUserDocRef);
-
-      if (authUserDoc.exists()) {
-        const contactIds = authUserDoc.data().contacts;
-        const contactDocs = await Promise.all(contactIds.map(id => getDoc(doc(db, 'users', id))));
-        setContacts(contactDocs.map(doc => ({ id: doc.id, ...doc.data() })));
-        console.log("Set contacts:", contacts);
+    try {
+      const authUser = getAuth().currentUser;
+      if (authUser) {
+        const authUserId = authUser.uid;
+        const authUserDocRef = doc(db, 'users', authUserId);
+        const authUserDoc = await getDoc(authUserDocRef);
+  
+        if (authUserDoc.exists()) {
+          const contactIds = authUserDoc.data().contacts || [];
+          const contactDocs = await Promise.all(contactIds.map(id => getDoc(doc(db, 'users', id))));
+          const fetchedContacts = contactDocs.map(doc => ({ id: doc.id, ...doc.data() }));
+          console.log("Fetched contacts:", fetchedContacts);
+          setContacts(fetchedContacts);
+        } else {
+          console.error("User document doesn't exist:", authUserId);
+        }
+      } else {
+        console.error("User is not authenticated");
       }
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
     }
   }
 
@@ -37,7 +46,7 @@ function Sidebar() {
     try {
       console.log("Fetching potential matches...");
       const users = await getUsers();
-      console.log("Fetched all users:", users);
+      console.log("Fetched all users:", users); // This should log the list of users
       setPotentialMatches(users);
     } catch (error) {
       console.error("Error fetching potential matches:", error);
@@ -49,6 +58,8 @@ function Sidebar() {
     if (authUser) {
       const authUserId = authUser.uid;
       const authUserDocRef = doc(db, 'users', authUserId);
+      
+      console.log("Removing match:", userId, authUserId);  // <-- Added this log
   
       await updateDoc(authUserDocRef, {
         contacts: arrayRemove(userId)
@@ -62,29 +73,42 @@ function Sidebar() {
       fetchContacts();
     }
   }
-
+  
   const addUser = async (userId) => {
-    try{
-      
+    try {
       const authUser = getAuth().currentUser;
       if (authUser) {
         const authUserId = authUser.uid;
         const authUserDocRef = doc(db, 'users', authUserId);
         const otherUserDocRef = doc(db, 'users', userId);
-    
+  
+        const authUserDoc = await getDoc(authUserDocRef);
+        const otherUserDoc = await getDoc(otherUserDocRef);
+  
+        if (!authUserDoc.exists()) {
+          console.error("Authenticated user document doesn't exist:", authUserId);
+          return;
+        }
+  
+        if (!otherUserDoc.exists()) {
+          console.error("Other user document doesn't exist:", userId);
+          return;
+        }
+  
         await updateDoc(authUserDocRef, {
           contacts: arrayUnion(userId)
         });
-    
+  
         await updateDoc(otherUserDocRef, {
           contacts: arrayUnion(authUserId)
         });
-    
-        fetchContacts();
-    
+        
+        console.log("User added successfully:", userId);
+  
+        fetchContacts();  // <-- Ensure contacts are re-fetched after adding a user
+  
         setShowPotentialMatches(false);
       }
-      console.log("User added:", userId);
     } catch (error) {
       console.error("Error adding user:", error);
     }
@@ -128,17 +152,23 @@ function Sidebar() {
     setIsModalOpen(false);
   };
 
-  const selectUserAndCreateChat = (userId) => {
-    createChatRoom(userId); // Existing function to create a chat room
+  const selectUserAndCreateChat = async (userId) => {
+    await addUser(userId); // Wait for the user to be added to contacts
+    createChatRoom(userId); // Then create the chatroom
     closeModal();
   };
 
+  const selectUserAndAddToSidebar = async (userId) => {
+    await addUser(userId); // Add the user to contacts
+    closeModal(); // Close the modal
+  };
   return (
     <div className="main-mentors">
       <div className="mentor-header">
         <h4>Your Mentors</h4>
       </div>
       <div className="mentor-list">
+      {console.log("Rendering contacts:", contacts)}  {/* Add this log */}
         {contacts.map(contact => (
           <SidebarItem
             key={contact.id}
@@ -156,12 +186,12 @@ function Sidebar() {
         <div className="modal">
           <div className="modal-content">
             <button onClick={closeModal}>Close</button>
-            <ul>
-              {potentialMatches.map(user => (
-                <li key={user.id} onClick={() => selectUserAndCreateChat(user.id)}>
-                  {user.name}
-                </li>
-              ))}
+              <ul>
+                {potentialMatches.map(user => (
+                  <li key={user.id} onClick={() => selectUserAndAddToSidebar(user.id)}>
+                      {user.name}
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

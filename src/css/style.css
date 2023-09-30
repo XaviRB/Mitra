@@ -1215,16 +1215,19 @@ h1, h2 {
   .mentor-list {
     border-bottom: 1px solid var(--color-green);
     margin-bottom: 2rem;
-  }
+    overflow-y: auto;  /* Allows scrolling if there are many contact names */
+    max-height: 400px;  /* Adjust this value based on your preference */
+}
   
-  .mentor-name {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    margin-bottom: 4rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
+    .mentor-name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 2rem;  /* Adjusted margin for top and bottom spacing */
+        padding: 1rem 0;    /* Added padding for top and bottom spacing */
+        border-bottom: 1px solid var(--color-green);  /* Border at the bottom of each contact name */
+        background-color: var(--color-light-grey);  /* Background color for the rectangle */
+    }
   
   .mentor-name h5 {
     font-size: 1.25rem;
@@ -1232,7 +1235,10 @@ h1, h2 {
     color: var(--color-white);
   }
   
-  .mentor-button {}
+  .mentor-name:hover {
+    background-color: var(--color-medium-grey);  /* Slightly darker shade on hover */
+    cursor: pointer;  /* Change cursor to pointer on hover */
+}
   
   .mentor-button .btn-green {
     font-size: 1rem;
