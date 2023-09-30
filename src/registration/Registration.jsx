@@ -164,14 +164,17 @@ function Registration() {
                 {currentStep === 2 && (
                   <>
                     <div>
-                      <h1>Verify your email</h1>
-                      <p>An email was sent to the email that was provided, please verify before clicking next.</p>
+                      <h1 className="registration-email-verfication-header"> Verify your email</h1>
+                      <p className="registration-email-verfication-text"> An email was sent to the email that was provided, please verify before clicking next.</p>
                     </div>
-                    <div className="loader"></div>
+                    <div className="loader-container">
+                      <div className="loader"></div>
+                    </div>
 
                     <button 
                       type="button" 
                       onClick={handleBack}
+                      className="registration-submit-back-button"
                     >
                       Back
                     </button>
@@ -179,6 +182,7 @@ function Registration() {
                     <button 
                       type="button" 
                       onClick={handleNext}
+                      className="registration-submit"
                     >
                       Next
                     </button>
@@ -208,6 +212,7 @@ function Registration() {
                     <button 
                       type="button" 
                       onClick={handleBack}
+                      className="registration-submit-back-button"
                     >
                       Back
                     </button>

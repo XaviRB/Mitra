@@ -1582,6 +1582,12 @@ h1, h2 {
 }
 
 /* LOADING ANIMATION */
+/* Loading Animation Container */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .loader  {
     margin: 2em 5em 2em 5em;
@@ -1783,14 +1789,13 @@ h1, h2 {
 }
 
 /* Registration Section */
-/* Registration Section */
 .registration {
     padding: 5rem 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+  /* Registration Box */
   .registration-box {
     display: flex;
     flex-direction: column;
@@ -1799,7 +1804,7 @@ h1, h2 {
     width: 45%;
     background-color: #fff;
     border-radius: 8px;
-    padding: 3rem 1rem;
+    padding: 3rem 5rem  10rem;
     box-shadow: 0 0 9px rgba(0, 0, 0, 0.1);
   }
   
@@ -1823,6 +1828,7 @@ h1, h2 {
     line-height: 2;
     text-align: center;
     margin-bottom: 4rem;
+    font-weight: bold;
   }
   
   .registration-text a {
@@ -1841,25 +1847,44 @@ h1, h2 {
   .registration-text h2 span {
     color: var(--color-green);
   }
-  
+  /* Registration Form as a whole */
   .registration-form {
     flex-basis: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 3rem;
   }
   
   .registration-form form {
     display: flex;
     flex-direction: column;
   }
-  
+
+  /* Registration Form/Fields */
   .registration-item {
     display: flex;
     flex-direction: column;
     font-size: 1.8rem;
+    margin-bottom: 3rem;
+
+  }
+
+  .registration-email-verfication-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2.7rem;
     margin-bottom: 2rem;
+    
+  }
+
+  .registration-email-verfication-text {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
   }
   
   .interest-checkboxes {
@@ -1906,11 +1931,11 @@ h1, h2 {
   
   .registration-item input {
     width: 100% ;
-    height: 2.5rem ;
+    height: 3rem ;
     border-radius: 4px ;
     background: #ecf0f1 ;
     border: 1px solid var(--color-light-grey) ;
-    padding: 1rem ;
+    padding: 1.7rem ;
     font-family: inherit ;
     color: var(--color-medium-grey);
     font-size: 1.7rem ;
@@ -1936,9 +1961,15 @@ h1, h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: var(--color-green) !important;
+    color: var(--color-white) !important;
+    font-family: inherit;
+    font-size: 1.50rem;
+    border-radius: 4px;
+    height: 2.5rem;
 }
   
-  .registration-submit button{
+  .registration-submit button {
     margin-top: 2rem;
     background: var(--color-green) !important;
     color: var(--color-white) !important;
@@ -1954,10 +1985,26 @@ h1, h2 {
     cursor: pointer;
   }
   
-  .registration-submit:hover{
+  .registration-submit:hover {
     background: var(--color-blue);
     color: var(--color-white);
   }
+
+  .registration-submit-back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1.7rem;
+    background-color: var(--color-green) !important;
+    color: var(--color-white) !important;
+    font-family: inherit;
+    font-size: 1.50rem;
+    border-radius: 4px;
+    height: 2.5rem;
+
+  }
+
 /* Progressbar */
   .progress-bar-container {
     width: 97%;
