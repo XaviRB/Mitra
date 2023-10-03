@@ -18,37 +18,31 @@ function Profile() {
                 <h4>Customize Your Profile Page</h4>
                 <div className="main-box">
                 <div className="main-item">
-                <div className="registration">
-                        <div className="registration-box">
-                            <div className="registration-item">
-                                <input type="text" name="name" id="name" placeholder="Name" />
+                <div className="profile">
+                        <div className="profile-box">
+                            <div className="profile-info">
+                                <h2>Name:</h2>
                             </div>
-                            <div className="registration-item">
-                                <input type="email" name="email" id="email" placeholder="Email Address"/>
+                            <div className="profile-info">
+                                <h2>Email:</h2>
                             </div>
-                            <div className="registration-item">
-                                <input type="password" name="password" id="password" placeholder="Password"/>
+                            <div className="profile-info">
+                                <h2>Preferred Pronouns:</h2>
                             </div>
-                            <div className="registration-item">
-                                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"/>
+                            <div className="profile-info">
+                                <h2>Current Role:</h2>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="main-item">
-                   <div className="registration">
-                        <div className="registration-box">
-                            <div className="registration-item">
-                                <input type="text" name="name" id="name" placeholder="Name" />
+                   <div className="profile">
+                        <div className="profile-box">
+                            <div className="profile-info">
+                                <h2>Bio/Introduction:</h2>
                             </div>
-                            <div className="registration-item">
-                                <input type="email" name="email" id="email" placeholder="Email Address"/>
-                            </div>
-                            <div className="registration-item">
-                                <input type="password" name="password" id="password" placeholder="Password"/>
-                            </div>
-                            <div className="registration-item">
-                                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"/>
+                            <div className="profile-info">
+                               <h2>Interests/Hobbies:</h2>
                             </div>
                         </div>
                     </div>
