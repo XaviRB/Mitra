@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification
 } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDocs, collection, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDocs, collection, getDoc, where } from "firebase/firestore";
 
 
 const firebaseConfig = {

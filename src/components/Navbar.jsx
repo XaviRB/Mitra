@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/style.css';
 import '../App.css';
 import mitralogo from '../img/mitra-logo-02.png';
@@ -6,11 +6,14 @@ import mitralogolight from '../img/mitra-logo-05.png';
 import { Link } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { getDoc, doc } from "firebase/firestore";
+import computerImage from '../img/computer.jpg';
+//import { db } from '../Firebase';
 
 /* REMINDER: Delete Home Link for the LandingPage (Its probably blended in with the white navbar) */
 
 export function Navbar() {
-  
+
   const navigate = useNavigate();
 
   const signOutUser = async () => {
@@ -44,6 +47,7 @@ export function Navbar() {
           <Link className="nav__link" to="/">
             Help
           </Link>
+          <div className="user-image" style={{ backgroundImage: `url(${computerImage})` }}></div>
           <Link onClick={signOutUser} className="btn-green">
             Sign Out
           </Link>

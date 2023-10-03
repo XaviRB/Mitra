@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { doc, updateDoc, arrayRemove, getDoc, arrayUnion, getDocs, query, collection } from 'firebase/firestore';
-import { setDoc } from 'firebase/firestore';
+import { setDoc,where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { db, getUsers } from '../../Firebase';
@@ -40,7 +40,7 @@ function Sidebar() {
     } catch (error) {
       console.error("Error fetching contacts:", error);
     }
-  }
+}
 
   const fetchPotentialMatches = async () => {
     try {
@@ -55,6 +55,10 @@ function Sidebar() {
 
   const removeMatch = async (userId) => {
     const authUser = getAuth().currentUser;
+    if (!userId) {
+      console.error("Invalid userId:", userId);
+      return;
+    }
     if (authUser) {
       const authUserId = authUser.uid;
       const authUserDocRef = doc(db, 'users', authUserId);
@@ -72,47 +76,62 @@ function Sidebar() {
       
       fetchContacts();
     }
-  }
-  
-  const addUser = async (userId) => {
-    try {
+}
+
+const addUser = async (userId) => {
+  try {
       const authUser = getAuth().currentUser;
-      if (authUser) {
-        const authUserId = authUser.uid;
-        const authUserDocRef = doc(db, 'users', authUserId);
-        const otherUserDocRef = doc(db, 'users', userId);
-  
-        const authUserDoc = await getDoc(authUserDocRef);
-        const otherUserDoc = await getDoc(otherUserDocRef);
-  
-        if (!authUserDoc.exists()) {
+      if (!authUser) {
+          console.error("User is not authenticated");
+          return;
+      }
+
+      if (!userId) {
+          console.error("Invalid userId:", userId);
+          return;
+      }
+
+      const authUserId = authUser.uid;
+      const authUserDocRef = doc(db, 'users', authUserId);
+      const otherUserDocRef = doc(db, 'users', userId);
+
+      const authUserDoc = await getDoc(authUserDocRef);
+      const otherUserDoc = await getDoc(otherUserDocRef);
+
+      if (!authUserDoc.exists()) {
           console.error("Authenticated user document doesn't exist:", authUserId);
           return;
-        }
-  
-        if (!otherUserDoc.exists()) {
+      }
+
+      if (!otherUserDoc.exists()) {
           console.error("Other user document doesn't exist:", userId);
           return;
-        }
-  
-        await updateDoc(authUserDocRef, {
-          contacts: arrayUnion(userId)
-        });
-  
-        await updateDoc(otherUserDocRef, {
-          contacts: arrayUnion(authUserId)
-        });
-        
-        console.log("User added successfully:", userId);
-  
-        fetchContacts();  // <-- Ensure contacts are re-fetched after adding a user
-  
-        setShowPotentialMatches(false);
       }
-    } catch (error) {
+
+      try {
+          await updateDoc(authUserDocRef, {
+              contacts: arrayUnion(userId)
+          });
+      } catch (error) {
+          console.error("Error updating auth user doc:", error);
+      }
+
+      try {
+          await updateDoc(otherUserDocRef, {
+              contacts: arrayUnion(authUserId)
+          });
+      } catch (error) {
+          console.error("Error updating other user doc:", error);
+      }
+
+      console.log("User added successfully:", userId);
+      fetchContacts();  // Ensure contacts are re-fetched after adding a user
+      setShowPotentialMatches(false);
+
+  } catch (error) {
       console.error("Error adding user:", error);
-    }
-  };
+  }
+};
 
   const toggleShowPotentialMatches = () => {
     console.log("Toggling potential matches...");
@@ -169,6 +188,7 @@ function Sidebar() {
       </div>
       <div className="mentor-list">
       {console.log("Rendering contacts:", contacts)}  {/* Add this log */}
+      {console.log("Rendering contacts in JSX:", contacts)}
         {contacts.map(contact => (
           <SidebarItem
             key={contact.id}

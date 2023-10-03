@@ -1301,32 +1301,43 @@ h1, h2 {
     color: #4c768d;
   }
   
-  /* navbar */
   .nav-bar {
     padding: 10px 30px;
     display: flex;
-    align-items: center;
+    align-items: center; /* This should vertically center all children */
     justify-content: space-between;
     background-color: #4c768d;
     color: #242443;
     height: 60px;
-  }
-  .sign-in {
+}
+
+.sign-in {
     border: none;
     background-color: transparent;
-  }
-  .sign-in > img {
+}
+
+.sign-in > img {
     height: 30px;
     width: auto;
-  }
-  .sign-out {
-    padding: 5px 10px;
+}
+
+.sign-out {
     border-radius: 5px;
     color: #88dded;
     border: 1px solid #1c2c4c;
     background-color: #1c2c4c;
     font-weight: 600;
-  }
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+    display: inline-block;
+}
   
   /* welcome page */
   .welcome {
