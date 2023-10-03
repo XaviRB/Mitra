@@ -1782,6 +1782,44 @@ h1, h2 {
 
 }
 
+/* Profile Page */
+.profile {
+    padding: 5rem 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45rem;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 3rem 5rem  10rem;
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.1);
+}
+
+/* Not used yet*/
+.profile-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+
+  .profile-info h2 {
+    display: flex;
+    font-size: 2.5rem;
+  }
+
 /* Registration Section */
 .registration {
     padding: 5rem 8rem;
@@ -1862,7 +1900,6 @@ h1, h2 {
     flex-direction: column;
     font-size: 1.8rem;
     margin-bottom: 3rem;
-
   }
 
   .registration-email-verfication-header {
@@ -1871,7 +1908,6 @@ h1, h2 {
     align-items: center;
     font-size: 2.7rem;
     margin-bottom: 2rem;
-    
   }
 
   .registration-email-verfication-text {
