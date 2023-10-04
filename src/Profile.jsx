@@ -22,15 +22,27 @@ function Profile() {
                         <div className="profile-box">
                             <div className="profile-info">
                                 <h2>Name:</h2>
+                                <div className="profile-input-field">
+                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                </div>
                             </div>
                             <div className="profile-info">
                                 <h2>Email:</h2>
+                                <div className="profile-input-field">
+                                    <input type="email" name="email" id="email" placeholder="Email" />
+                                </div>
                             </div>
                             <div className="profile-info">
-                                <h2>Preferred Pronouns:</h2>
+                                <h2>Pronouns:</h2>
+                                <div className="profile-input-field">
+                                    <input type="text" name="pronouns" id="pronouns" placeholder="Pronouns" />
+                                </div>
                             </div>
                             <div className="profile-info">
-                                <h2>Current Role:</h2>
+                                <h2>Role:</h2>
+                                <div className="profile-input-field">
+                                    <input type="text" name="role" id="role" placeholder="Role" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -38,11 +50,23 @@ function Profile() {
                 <div className="main-item">
                    <div className="profile">
                         <div className="profile-box">
-                            <div className="profile-info">
-                                <h2>Bio/Introduction:</h2>
+                            <div className="profile-large-info">
+                                <h2>Biography:</h2>
+                                <div className="profile-large-input-field">
+                                    <input name="biography" id="biography" placeholder="Biography" />
+                                </div>
                             </div>
                             <div className="profile-info">
-                               <h2>Interests/Hobbies:</h2>
+                               <h2>Interests:</h2>
+                               <div className="profile-input-field">
+                                    <input type="text" name="interests" id="interests" placeholder="Interests" />
+                                </div>
+                            </div>
+                            <div className="profile-info">
+                                <h2>Hobbies:</h2>
+                                <div className="profile-input-field">
+                                    <input type="text" name="hobbies" id="hobbies" placeholder="Hobbies" />
+                                </div>
                             </div>
                         </div>
                     </div>
