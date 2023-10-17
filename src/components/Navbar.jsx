@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
-import computerImage from '../img/computer.jpg';
+import userImage from '../img/users/Default_User.png';
 //import { db } from '../Firebase';
 
 /* REMINDER: Delete Home Link for the LandingPage (Its probably blended in with the white navbar) */
@@ -47,7 +47,7 @@ export function Navbar() {
           <Link className="nav__link" to="/">
             Help
           </Link>
-          <div className="user-image" style={{ backgroundImage: `url(${computerImage})` }}></div>
+          <div className="user-image" style={{ backgroundImage: `url(${userImage})` }}></div>
           <Link onClick={signOutUser} className="btn-green">
             Sign Out
           </Link>

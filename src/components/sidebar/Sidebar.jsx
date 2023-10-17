@@ -5,6 +5,7 @@ import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { db, getUsers } from '../../Firebase';
 import SidebarItem from './SidebarItems';
+import userImage from '../../img/users/Default_User.png';
 
 function Sidebar() {
   const [contacts, setContacts] = useState([]);
@@ -190,12 +191,17 @@ const addUser = async (userId) => {
       {console.log("Rendering contacts:", contacts)}  {/* Add this log */}
       {console.log("Rendering contacts in JSX:", contacts)}
         {contacts.map(contact => (
-          <SidebarItem
-            key={contact.id}
-            contact={contact}
-            removeMatch={removeMatch}
-            createChatRoom={createChatRoom}
-          />
+          <div className="contact-item" key={contact.id}>
+            <img src={userImage} alt="User" className="sidebar-user-image" />
+            <div className="name-box">
+              <SidebarItem
+                key={contact.id}
+                contact={contact}
+                removeMatch={removeMatch}
+                createChatRoom={createChatRoom}
+              /> 
+              </div>
+        </div>
         ))}
       </div>
       <button onClick={openModal}>

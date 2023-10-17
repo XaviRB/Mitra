@@ -184,7 +184,7 @@ h1, h2 {
     width: 100%;
     height: auto;
     /* height: calc(100vh - var(--bar-height)); */
-    padding: 24px;
+    padding: 24px ;
     background: var(--color-primary);
     box-sizing: border-box;
 }
@@ -1183,7 +1183,7 @@ h1, h2 {
     text-align: center;
     margin-bottom: 8rem;
   }
-  
+  /* Sidebar */
   .main-container {
     display: flex;
   }
@@ -1219,15 +1219,15 @@ h1, h2 {
     max-height: 400px;  /* Adjust this value based on your preference */
 }
   
-    .mentor-name {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 1rem 2rem;  /* Adjusted margin for top and bottom spacing */
-        padding: 1rem 0;    /* Added padding for top and bottom spacing */
-        border-bottom: 1px solid var(--color-green);  /* Border at the bottom of each contact name */
-        background-color: var(--color-light-grey);  /* Background color for the rectangle */
-    }
+.mentor-name {
+    display: flex;
+    /* Removed justify-content: space-between; */
+    align-items: flex-start; /* Changed from center to flex-start */
+    margin: 1rem 2rem;  /* Adjusted margin for top and bottom spacing */
+    padding: 1rem 0;    /* Added padding for top and bottom spacing */
+    border-bottom: 1px solid var(--color-green);  /* Border at the bottom of each contact name */
+    background-color: var(--color-light-grey);  /* Background color for the rectangle */
+}
   
   .mentor-name h5 {
     font-size: 1.25rem;
@@ -1251,7 +1251,40 @@ h1, h2 {
     justify-content: center;
     align-items: center;
   }
-  
+
+  .mentor-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Makes it a circle */
+    margin-right: 10px; /* Adds some spacing between the image and the name */
+    object-fit: cover; /* Ensures the image covers the entire circle */
+    align-self: center; /* Vertically centers the image in the .mentor-name container */
+}
+
+.sidebar-user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px; /* Space between the image and the name */
+    vertical-align: middle; /* This will align the image vertically with the text */
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start; /* Changed from center to flex-start */
+    padding-left: 20px; /* Space from the left edge */
+}
+
+/* Styling for the name box */
+.contact-item .name-box {
+    background-color: rgb(241, 241, 241); /* Light gray background */
+    padding: 5px 10px; /* Padding around the name */
+    border-radius: 5px; /* Rounded corners */
+    margin-left: 5px; /* Space between the image and the name box */
+}
+
+
+  /* main-home-page */
   .main-content {
     padding: 5rem 8rem;
     flex-basis: 80%;
@@ -1309,35 +1342,36 @@ h1, h2 {
     background-color: #4c768d;
     color: #242443;
     height: 60px;
-}
+    
+    }
 
-.sign-in {
-    border: none;
-    background-color: transparent;
-}
+    .sign-in {
+        border: none;
+        background-color: transparent;
+    }
 
-.sign-in > img {
-    height: 30px;
-    width: auto;
-}
+    .sign-in > img {
+        height: 30px;
+        width: auto;
+    }
 
-.sign-out {
-    border-radius: 5px;
-    color: #88dded;
-    border: 1px solid #1c2c4c;
-    background-color: #1c2c4c;
-    font-weight: 600;
-}
+    .sign-out {
+        border-radius: 5px;
+        color: #88dded;
+        border: 1px solid #1c2c4c;
+        background-color: #1c2c4c;
+        font-weight: 600;
+    }
 
-.user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    margin-right: 15px;
-    display: inline-block;
-}
+    .user-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+        display: inline-block;
+    }
   
   /* welcome page */
   .welcome {
@@ -1805,37 +1839,65 @@ h1, h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 3rem 5rem  10rem;
 }
 
 .profile-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 45rem;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 3rem 5rem  10rem;
-    box-shadow: 0 0 9px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+.profile-text{
+    flex-basis: 50%;
+}
+/* Not used yet*/
+.profile-form {
+    display: flex;
+    justify-content: space-between;
 }
 
-/* Not used yet*/
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 50%; /* Split the width between the two columns */
+}
+
 .profile-item {
+    margin-bottom: 2rem;
     display: flex;
-    flex-direction: column;
-    font-size: 1.8rem;
-    margin-bottom: 3rem;
-  }
+    align-items: center;
+}
 
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-  }
+.profile-item label {
+    margin-right: 1rem;
+    width: 80%; /* Adjust this value based on the longest label */
+    display: inline-block;
+    text-align: right;
+}
 
-  .profile-info h2 {
-    display: flex;
-    font-size: 2.5rem;
-  }
+
+.profile-item .input {
+    width: 50rem;
+    height: 4.5rem;
+    border-radius: 4px;
+    background: #ecf0f1;
+    border: 1px solid var(--color-light-grey);
+    padding: 1rem;
+    font-family: inherit;
+    color: var(--color-medium-grey);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.profile-item .placeholder {
+    color: var(--color-medium-grey);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
 
 /* Registration Section */
 .registration {
