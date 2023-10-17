@@ -1862,8 +1862,8 @@ h1, h2 {
 .column {
     display: flex;
     flex-direction: column;
-    width: 50%; /* Split the width between the two columns */
-}
+    margin-bottom: 3rem;
+  }
 
 .profile-item {
     margin-bottom: 2rem;
