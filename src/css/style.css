@@ -119,11 +119,6 @@ h1, h2 {
     transition: background 0.15s;
 }
 
-.bar--bg {
-    /* background-color: var(--color-white);  */
-    /* background-image: var(--gradient-primary); */
-    /* background-image: url(../img/purple-shape-bg-01.png); */
-}
 
 .bar__content {
     height: 100%;
@@ -146,11 +141,6 @@ h1, h2 {
   
   .bar__logo {
     height: 32px; /* Adjust the height as needed */
-  }
-  
-  /* Used to make the logo on the landing page navbar be either all black or all white */
-  .bar--solid .bar__logo {
-    /* filter: brightness(100); /* Adjust the brightness as needed */
   }
   
 
@@ -932,9 +922,7 @@ h1, h2 {
     display: flex;
 }
 
-.banner-item {
 
-}
 
 .banner-item .input {
     width: 26rem;
@@ -1095,10 +1083,6 @@ h1, h2 {
     margin-top: 2rem;
 }
 
-.login-link {
-
-}
-
 .login-link a {
     font-size: 1.25rem;
     color: var(--color-medium-grey);
@@ -1109,9 +1093,7 @@ h1, h2 {
     color: var(--color-green);
 }
 
-.login-submit {
 
-}
 
 .login-submit .btn-submit {
     background: var(--color-green);
@@ -1318,8 +1300,6 @@ h1, h2 {
     line-height: 2;
     margin-bottom: 5rem;
   }
-  
-  .main-item p span {}
   
   .main-button {
     margin-bottom: 2rem;
@@ -1572,9 +1552,7 @@ h1, h2 {
 }
 
 /* Contact Form */
-.contact-form {
-    /* margin-bottom: 4rem; */
-}
+
 
 .contact-item {
     display: flex;
@@ -1734,8 +1712,6 @@ h1, h2 {
         padding: 18rem 8rem 4rem 8rem;
     }
 
-    .header-box {
-    }
 
     .header-image img {
         width: 350px;
@@ -1834,36 +1810,60 @@ h1, h2 {
 }
 
 /* Profile Page */
-.profile {
-    padding: 5rem 8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 3rem 5rem  10rem;
+.profile-header {
+    margin-bottom: 2rem;
 }
 
-.profile-box {
+.profile-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 20px; /* Spacing between the two boxes */
+    justify-content: space-between;
 }
-.profile-text{
-    flex-basis: 50%;
+
+.profile-main-content {
+    padding: 3rem; 
+    width: 70%; 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
-/* Not used yet*/
-.profile-form {
+.profile-form-box, .profile-interests-box {
+    flex: 1; /* This makes sure both boxes take up equal space */
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.profile-box {
+    padding: 2rem; 
+    background-color: #ffffff;
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+/* For mobile responsiveness if required. */
+@media (max-width: 768px) {
+    .profile-main-content {
+        width: 95%;
+    }
+}
+.profile-header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: #888;
+}
+
+.info-settings {
     display: flex;
     justify-content: space-between;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-  }
+.basic-info, .profile-interests {
+    width: 100%; 
+}
 
 .profile-item {
     margin-bottom: 2rem;
@@ -1873,14 +1873,13 @@ h1, h2 {
 
 .profile-item label {
     margin-right: 1rem;
-    width: 80%; /* Adjust this value based on the longest label */
+    width: 40%; /* Adjust this value based on the longest label */
     display: inline-block;
     text-align: right;
 }
 
-
 .profile-item .input {
-    width: 50rem;
+    width: 60%; /* Adjust this based on how wide you want the input field */
     height: 4.5rem;
     border-radius: 4px;
     background: #ecf0f1;
@@ -1897,6 +1896,19 @@ h1, h2 {
     font-size: 1.4rem;
     font-weight: 400;
     line-height: 1.6;
+}
+
+.profile-user-image {
+    width: 10em;  /* or whatever size you want */
+    height: 10em;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto; /* This will center the div if its parent container has a flex or grid display or is block-level */
+    border-radius: 50%; /* optional, if you want the image to be circular */
+}
+
+.profile-user-image {
+    margin: 20px auto;
 }
 
 /* Registration Section */
