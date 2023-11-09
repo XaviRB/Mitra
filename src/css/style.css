@@ -1899,8 +1899,8 @@ h1, h2 {
 }
 
 .profile-user-image {
-    width: 10em;  /* or whatever size you want */
-    height: 10em;
+    width: 10em !important;/* or whatever size you want */
+    height: 10em !important;
     background-size: cover;
     background-position: center;
     margin: 0 auto; /* This will center the div if its parent container has a flex or grid display or is block-level */
@@ -1909,6 +1909,13 @@ h1, h2 {
 
 .profile-user-image {
     margin: 20px auto;
+}
+
+.profile-submit-color {
+    justify-content: center;
+    align-self: center;
+    display: flex;
+    margin-left: 40px;
 }
 
 /* Registration Section */
