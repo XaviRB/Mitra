@@ -75,3 +75,38 @@ export const sendVerificationEmail = async (user) => {
     console.log("Error sending verification email: ", error);
   }
 };
+
+// Function to create a chat room
+export const createChatRoom = async (participants) => {
+  // Add the chat room document to the 'chatrooms' collection
+  const chatRoomRef = await addDoc(collection(db, 'chatrooms'), {
+    participants,
+    lastMessage: '',
+    lastUpdated: serverTimestamp()
+  });
+  return chatRoomRef.id; // Return the newly created chat room ID
+};
+
+// Function to get chat rooms for a user
+export const getUserChatRooms = async (userId) => {
+  const q = query(collection(db, 'chatrooms'), where('participants', 'array-contains', userId));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
+
+// Function to send a message to a chat room
+export const sendMessage = async (chatRoomId, messageData) => {
+  const messagesRef = collection(db, `chatrooms/${chatRoomId}/messages`);
+  await addDoc(messagesRef, {
+    ...messageData,
+    timestamp: serverTimestamp() // Use server timestamp for consistency
+  });
+};
+
+// Function to retrieve messages from a chat room
+export const getMessages = async (chatRoomId) => {
+  const messagesRef = collection(db, `chatrooms/${chatRoomId}/messages`);
+  const q = query(messagesRef, orderBy('timestamp', 'asc'));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};

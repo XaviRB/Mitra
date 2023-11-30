@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { doc, updateDoc, arrayRemove, getDoc, arrayUnion, getDocs, query, collection } from 'firebase/firestore';
-import { setDoc,where } from 'firebase/firestore';
+import {
+  doc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  addDoc,
+  serverTimestamp,
+  getDocs // Added getDocs to the import
+} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { db, getUsers } from '../../Firebase';
 import SidebarItem from './SidebarItems';
 import userImage from '../../img/users/Default_User.png';
 
-function Sidebar() {
+function Sidebar({ onChatOpen }) {
   const [contacts, setContacts] = useState([]);
   const [showPotentialMatches, setShowPotentialMatches] = useState(false);
   const [potentialMatches, setPotentialMatches] = useState([]);
@@ -147,20 +159,40 @@ const addUser = async (userId) => {
     const authUser = getAuth().currentUser;
     if (authUser) {
       const authUserId = authUser.uid;
-      const chatRoomId = `${authUserId}_${contactId}`;
-
-      const chatRoomDocRef = doc(db, 'chatrooms', chatRoomId);
-      const chatRoomDoc = await getDoc(chatRoomDocRef);
-
-      if (!chatRoomDoc.exists()) {
-        await setDoc(chatRoomDocRef, {
-          users: [authUserId, contactId],
-          messages: []
+      const participants = [authUserId, contactId].sort(); // Sort to maintain order
+  
+      // Query to check if a chat room already exists with these participants
+      const q = query(collection(db, 'chatrooms'), where('participants', '==', participants));
+      const querySnapshot = await getDocs(q);
+  
+      let chatRoomId; // Declare chatRoomId here
+  
+      if (querySnapshot.empty) {
+        // Create new chat room if it doesn't exist
+        const chatRoomDocRef = await addDoc(collection(db, 'chatrooms'), {
+          participants,
+          lastMessage: '',
+          lastUpdated: serverTimestamp()
         });
+        chatRoomId = chatRoomDocRef.id; // Define chatRoomId
+      } else {
+        // Use the existing chat room
+        chatRoomId = querySnapshot.docs[0].id; // Define chatRoomId
       }
-
-      navigate(`/chat/${chatRoomId}`);
+  
+      // Check if onChatOpen is a function before calling it
+      if (typeof onChatOpen === 'function') {
+        onChatOpen(chatRoomId); // Use chatRoomId within the function scope
+      } else {
+        console.error('onChatOpen is not a function');
+      }
     }
+  };
+
+
+  // Provide a default prop for onChatOpen
+  Sidebar.defaultProps = {
+    onChatOpen: () => {} // Default to a no-operation function
   };
 
   const openModal = () => {
@@ -182,6 +214,8 @@ const addUser = async (userId) => {
     await addUser(userId); // Add the user to contacts
     closeModal(); // Close the modal
   };
+
+  
   return (
     <div className="main-mentors">
       <div className="mentor-header">

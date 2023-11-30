@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import Signin from "./Signin";
 import Home from "./Home";
-import Chat from "./Chat";
+import Chat from "./components/chat/Chat";
 import Registration from "./registration/Registration";
 import Profile from "./Profile";
 import { AuthProvider } from "./components/Auth";
@@ -43,7 +43,7 @@ function App() {
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Registration" element={<Registration />} />
         <Route path="/Home" element={<HomeRoute />} />
-        <Route path="/Chat" element={<ChatRoute />} />
+        <Route path="/Chat/:chatId" element={<ChatRoute />} /> {/* Updated this line */}
         <Route path="/Profile" element={<ProfileRoute />} /> 
       </Routes>
     </BrowserRouter>

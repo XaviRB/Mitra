@@ -1,58 +1,30 @@
-import  React  from 'react';
-import {Navbar} from './components/Navbar';
-import {Footer} from './components/Footer';
-import Sidebar from './components/sidebar/Sidebar'
+import React, { useState } from 'react';
+import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+import Sidebar from './components/sidebar/Sidebar';
+import Chat from './components/chat/Chat';
 
-
-function Home(){
+function Home() {
+    const [isChatVisible, setChatVisible] = useState(false);
+    const [activeChatId, setActiveChatId] = useState(null);
   
-    return(
-        <>
-        {/* Google Site Verification */}
-        <meta
-            name="google-site-verification"
-            content="DogpcsIsv8MfOJNDSMVMBvUm1QvIUQ4CYFODmIn3haI"
-        />
-        {/* ----------------SEO-Optimization---------------- */}
-        <title>Mitra</title>
-        {/* Google Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-            rel="stylesheet"
-        />
-        {/* Google Material Icons */}
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-        />
-        {/* Font Awesome */}
-        {/* Stylesheet */}
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/components.css" />
-        {/* Favicon */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        {/* Bar */}
-        <Navbar/>
-        <div>
-        {/* Header Section */}
-        {/* Header Javascript */}
-        {/* Main Section */}
-        <section className="main">
-            <Sidebar/>
-            <div className="main-content">
+    const handleChatOpen = (contactId) => {
+      console.log('Opening chat for contact ID:', contactId);
+      setActiveChatId(contactId); // Set the active chat ID
+      setChatVisible(true); // Show the chat component
+    };
+  
+    return (
+      <>
+        <Navbar />
+        <div className="main">
+          <Sidebar onChatOpen={handleChatOpen} />
+          <div className="main-content">
+            {isChatVisible ? (
+              <Chat activeChatId={activeChatId} />
+            ) : (
+              // Otherwise, render the default main content
+              <>
                 <h2>Welcome to Mitra - Advice, Support, Development Website</h2>
                 <h4>Created by a research team at Western Washington University</h4>
                 <div className="main-box">
@@ -92,12 +64,13 @@ function Home(){
                     </div>
                 </div>
                 </div>
-            </div>
-        </section>
+            </>
+          )}
         </div>
-        {/* Footer Section */}
-        <Footer />
+      </div>
+      <Footer />
     </>
-    );
-    }
-    export default Home;
+  );
+}
+
+export default Home;
