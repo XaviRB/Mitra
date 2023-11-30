@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification
 } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDocs, collection, getDoc, where } from "firebase/firestore";
+import { getAuth, browserLocalPersistence} from 'firebase/auth';
 
 
 const firebaseConfig = {
@@ -18,6 +18,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+// Enable Firebase auth state persistence
+getAuth(app).setPersistence(browserLocalPersistence)
+    .then(() => {
+      // Auth state persistence is enabled
+    })
+    .catch((error) => {
+      console.error('Error enabling auth state persistence:', error);
+    });
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
@@ -73,6 +83,36 @@ export const sendVerificationEmail = async (user) => {
     console.log("Verification email sent.");
   } catch (error) {
     console.log("Error sending verification email: ", error);
+  }
+};
+
+export const updateColorInFirebase = (userId, color) => {
+  const colorRef = doc(db, 'users', userId);
+  setDoc(colorRef, { color })
+      .then(() => {
+        console.log('Color updated in Firebase');
+      })
+      .catch((error) => {
+        console.error('Error updating color in Firebase:', error);
+      });
+};
+
+export const getUserColorFromFirebase = async (userId) => {
+  const colorRef = doc(db, 'users', userId);
+
+  try {
+    const colorDoc = await getDoc(colorRef);
+
+    if (colorDoc.exists()) {
+      const userData = colorDoc.data();
+      return userData.color || '#aabbcc'; // Return the user's color if it exists, or a default color
+    } else {
+      // If the document doesn't exist, return a default color
+      return '#aabbcc';
+    }
+  } catch (error) {
+    console.error('Error fetching user color from Firebase:', error);
+    return '#aabbcc'; // Return a default color in case of an error
   }
 };
 
