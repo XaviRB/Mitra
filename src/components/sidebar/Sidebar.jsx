@@ -39,16 +39,19 @@ function Sidebar({ onChatOpen }) {
         const authUserDoc = await getDoc(authUserDocRef);
   
         if (authUserDoc.exists()) {
-          const contactIds = authUserDoc.data().contacts || [];
+          let contactIds = authUserDoc.data().contacts || [];
+          // Filter out the current user's ID from the contact list
+          contactIds = contactIds.filter(id => id !== authUserId);
+
           const contactDocs = await Promise.all(contactIds.map(id => getDoc(doc(db, 'users', id))));
-          const fetchedContacts = contactDocs.map(doc => ({ id: doc.id, ...doc.data() }));
+          const fetchedContacts = contactDocs.map(doc => ({ id: doc.id, ...doc.data()}));
           console.log("Fetched contacts:", fetchedContacts);
           setContacts(fetchedContacts);
         } else {
           console.error("User document doesn't exist:", authUserId);
         }
       } else {
-        console.error("User is not authenticated");
+        console.error("User is not authenticated!");
       }
     } catch (error) {
       console.error("Error fetching contacts:", error);
@@ -57,10 +60,18 @@ function Sidebar({ onChatOpen }) {
 
   const fetchPotentialMatches = async () => {
     try {
-      console.log("Fetching potential matches...");
-      const users = await getUsers();
-      console.log("Fetched all users:", users); // This should log the list of users
-      setPotentialMatches(users);
+     const authUser = getAuth().currentUser;
+      if (authUser) {
+          console.log("Fetching potential matches...");
+          let users = await getUsers();
+          users = users.filter(user => user.id !== authUser.uid)
+
+          console.log("Fetched all users:", users); // This should log the list of users
+          setPotentialMatches(users);
+      }
+      else {
+          console.error("User is not authenticated!");
+      }
     } catch (error) {
       console.error("Error fetching potential matches:", error);
     }
@@ -226,7 +237,7 @@ const addUser = async (userId) => {
       {console.log("Rendering contacts in JSX:", contacts)}
         {contacts.map(contact => (
           <div className="contact-item" key={contact.id}>
-            <img src={userImage} alt="User" className="sidebar-user-image" />
+            <img src={userImage} alt="User" className="sidebar-user-image" style={{ backgroundColor: contact.color ?? "#aabbcc"}} />
             <div className="name-box">
               <SidebarItem
                 key={contact.id}
@@ -245,7 +256,6 @@ const addUser = async (userId) => {
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <button onClick={closeModal}>Close</button>
               <ul>
                 {potentialMatches.map(user => (
                   <li key={user.id} onClick={() => selectUserAndAddToSidebar(user.id)}>
@@ -253,6 +263,7 @@ const addUser = async (userId) => {
                   </li>
                 ))}
             </ul>
+              <button className="close-button" onClick={closeModal}>Close</button>
           </div>
         </div>
       )}

@@ -47,7 +47,10 @@ export function Navbar() {
           <Link className="nav__link" to="/">
             Help
           </Link>
-          <div className="user-image" style={{ backgroundImage: `url(${userImage})` }}></div>
+          {/* Temporarily block-commenting this out: profile display in header
+          <div className="local-user-background">
+            <div className="user-image" style={{ backgroundImage: `url(${userImage})` }}></div>
+          </div>*/}
           <Link onClick={signOutUser} className="btn-green">
             Sign Out
           </Link>

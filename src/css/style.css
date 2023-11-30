@@ -121,10 +121,10 @@ h1, h2 {
 
 
 .bar__content {
-    height: 100%;
+    height: 95%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
   }
   
   .bar {
@@ -1243,6 +1243,9 @@ h1, h2 {
     align-self: center; /* Vertically centers the image in the .mentor-name container */
 }
 
+.close-button {
+    margin-top: 20px;
+}
 .sidebar-user-image {
     width: 40px;
     height: 40px;
@@ -1898,6 +1901,15 @@ h1, h2 {
     line-height: 1.6;
 }
 
+.profile-background {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
 .profile-user-image {
     width: 10em !important;/* or whatever size you want */
     height: 10em !important;

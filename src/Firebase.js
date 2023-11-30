@@ -4,7 +4,18 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification
 } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDocs, collection, getDoc, where } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDocs,
+  collection,
+  getDoc,
+  where,
+  updateDoc,
+  addDoc,
+  serverTimestamp, query, orderBy
+} from "firebase/firestore";
 import { getAuth, browserLocalPersistence} from 'firebase/auth';
 
 
@@ -86,29 +97,32 @@ export const sendVerificationEmail = async (user) => {
   }
 };
 
-export const updateColorInFirebase = (userId, color) => {
-  console.log(userId);
-  const colorRef = doc(db, 'colors/', userId);
-  setDoc(colorRef, { color })
-      .then(() => {
-        console.log('Color updated in Firebase');
-      })
-      .catch((error) => {
-        console.error('Error updating color in Firebase:', error);
-      });
+export const updateColorInFirebase = async (userId, color) => {
+  const userRef = doc(db, 'users', userId);
+  if (userRef) {
+    await updateDoc(userRef, { color: color })
+        .then(() => {
+          console.log('Color updated in Firebase');
+        })
+        .catch((error) => {
+          console.error('Error updating color in Firebase:', error);
+        });
+  }
+  else {
+    console.error("User not authenticated!");
+  }
 };
 
 export const getUserColorFromFirebase = async (userId) => {
-  const colorRef = doc(db, 'colors/', userId);
-
+  const userRef = doc(db, 'users', userId);
   try {
-    const colorDoc = await getDoc(colorRef);
+    const userDoc = await getDoc(userRef);
 
-    if (colorDoc.exists()) {
-      const userData = colorDoc.data();
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
       return userData.color || '#aabbcc'; // Return the user's color if it exists, or a default color
     } else {
-      // If the document doesn't exist, return a default color
+      // If the user document doesn't exist, return a default color
       return '#aabbcc';
     }
   } catch (error) {

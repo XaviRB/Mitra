@@ -41,14 +41,7 @@ function Profile() {
     }
 
     const profileStyle = {
-        backgroundColor: color, // Set the background color to the hex code
-        borderRadius: '50%',
-        width: '100px',
-        height: '100px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: '0 auto', // Center the container horizontally
+        backgroundColor: color // Set the background color to the hex code
     };
 
     return (
