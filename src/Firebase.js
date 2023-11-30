@@ -87,7 +87,8 @@ export const sendVerificationEmail = async (user) => {
 };
 
 export const updateColorInFirebase = (userId, color) => {
-  const colorRef = doc(db, 'users', userId);
+  console.log(userId);
+  const colorRef = doc(db, 'colors/', userId);
   setDoc(colorRef, { color })
       .then(() => {
         console.log('Color updated in Firebase');
@@ -98,7 +99,7 @@ export const updateColorInFirebase = (userId, color) => {
 };
 
 export const getUserColorFromFirebase = async (userId) => {
-  const colorRef = doc(db, 'users', userId);
+  const colorRef = doc(db, 'colors/', userId);
 
   try {
     const colorDoc = await getDoc(colorRef);

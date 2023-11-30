@@ -1139,7 +1139,7 @@ h1, h2 {
 /* Main Section */
 .main {
     display: flex;
-    height: 100vh;
+    height: 125vh;
     margin-top: 7em;
   }
   
